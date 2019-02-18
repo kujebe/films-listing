@@ -39299,23 +39299,7 @@ var staticRenderFns = [
           _c("a", { attrs: { href: "#" } }, [_vm._v("Back to top")])
         ]),
         _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "Album example is © Bootstrap, but please download and customize it for yourself!"
-          )
-        ]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v("\n      New to Bootstrap?\n      "),
-          _c("a", { attrs: { href: "../../" } }, [
-            _vm._v("Visit the homepage")
-          ]),
-          _vm._v(" or read our\n      "),
-          _c("a", { attrs: { href: "../../getting-started/" } }, [
-            _vm._v("getting started guide")
-          ]),
-          _vm._v(".\n    ")
-        ])
+        _c("p", [_vm._v("Copyrights © 2018 - Films App")])
       ])
     ])
   }

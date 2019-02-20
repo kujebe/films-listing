@@ -22,55 +22,55 @@ php artisan key:generate
 php artisan passport:install
 ```
 
-<strong>Step 8.</strong>Run migration to setup database tables
+> <p><strong>Step 8.</strong>Run migration to setup database tables</p>
 
 ```
 php artisan migrate
 ```
 
-<strong>Step 9.</strong>Open Laravel tinker to be able to access the database from command line
+> <p><strong>Step 9.</strong>Open Laravel tinker to be able to access the database from command line</p>
 
 ```
 php artisan tinker
 ```
 
-<strong>Step 10.</strong> Create dummy users. Create at least 20 users to be able to have enough comments.
+> <p><strong>Step 10.</strong> Create dummy users. Create at least 20 users to be able to have enough comments.</p>
 
 ```
 factory(App\User::class, 20)->create();
 ```
 
-<strong>Step 11.</strong> Exit tinker
+> <p><strong>Step 11.</strong> Exit tinker</p>
 
 ```
 exit
 ```
 
-<strong>Step 12.</strong>Seed dummy data
+> <p><strong>Step 12.</strong>Seed dummy data</p>
 
 ```
 php artisan db:seed
 ```
 
-<strong>Step 13.</strong>Install Node module
+> <p><strong>Step 13.</strong>Install Node module</p>
 
 ```
 npm install
 ```
 
-<strong>Step 14.</strong>For best performance, create a virtualhost on your matchine and add the base URL to the bottom of .env file. This will allow your axios API request to perform better. Use xample below
+> <p><strong>Step 14.</strong>For best performance, create a virtualhost on your matchine and add the base URL to the bottom of .env file. This will allow your axios API request to perform better. Use xample below </p>
 
 ```
 MIX_APP_URL="http://repos.local/"
 ```
 
-<strong>Step 14.</strong>For develpment, run
+> <p><strong>Step 14.</strong>For development, run</p>
 
 ```
 npm run watch
 ```
 
-<strong>Step 15.</strong>For deployment, run
+> <p><strong>Step 15.</strong>For deployment, run</p>
 
 ```
 npm run prod

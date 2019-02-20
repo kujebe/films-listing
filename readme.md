@@ -3,7 +3,7 @@
 <p>A film listing application that uses Laravel API Resources as backend and VueJs as front end. This app utilizes all freatures of Vuejs like, Vue Router, Vuex and Axios to fetch API data.
 It's a full CRUD application that also features Authentication using Passport.</p>
 <p><img src="film-listing-home.jpg" width="416" style="float: left">
-<img src="film-listing-film.jpg" width="416" style="float: left"></p>
+<img src="film-listing-film-page.jpg" width="416" style="float: left"></p>
 
 ## Installation instructions
 

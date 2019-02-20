@@ -8,9 +8,9 @@
 composer install
 ```
 
-<strong>Step 4.</strong>Rename .env.example to .env
-<strong>Step 5.</strong>Change .env DB\_\* values in .env file to your database
-<strong>Step 6.</strong>Generate application key for Laravel
+> <strong>Step 4.</strong>Rename .env.example to .env
+> <strong>Step 5.</strong>Change .env DB\_\* values in .env file to your database
+> <strong>Step 6.</strong>Generate application key for Laravel
 
 ```
 php artisan key:generate

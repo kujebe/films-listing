@@ -80,3 +80,10 @@ npm run watch
 ```
 npm run prod
 ```
+
+## Login
+
+```
+Username: Any user email form the database </br>
+Password: "secret"
+```

@@ -1,8 +1,8 @@
 ## Installation instructions
 
-<strong>Step 1.</strong> Clone this repo
-<strong>Step 2.</strong>cd to films-listing
-<strong>Step 3.</strong>Install dependencies
+> <p><strong>Step 1.</strong> Clone this repo</p>
+> <p><strong>Step 2.</strong>cd to films-listing</p>
+> <p><strong>Step 3.</strong>Install dependencies</p>
 
 ```
 composer install
@@ -16,7 +16,7 @@ composer install
 php artisan key:generate
 ```
 
-<strong>Step 7.</strong>Create the encryption keys needed to generate secure access tokens
+> <p><strong>Step 7.</strong>Create the encryption keys needed to generate secure access tokens</p>
 
 ```
 php artisan passport:install

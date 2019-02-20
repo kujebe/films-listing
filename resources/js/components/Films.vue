@@ -15,7 +15,8 @@
         <div class="row">
           <div class="col-md-4" v-for="film in films" :key="film.id">
             <div class="card mb-4 box-shadow">
-              <img class="card-img-top" :src="'/images/'+film.film_photo">
+              <img class="card-img-top" :src="'/images/'+film.film_photo" v-if="film.film_photo">
+              <img src="https://via.placeholder.com/200" alt="Placeholder" v-else>
               <div class="card-body">
                 <h4>{{ film.name | truncate(25, '...') }}</h4>
                 <p class="card-text">{{film.description | truncate(100, '...')}}.</p>
@@ -59,7 +60,7 @@
                 >
                   <span
                     class="page-link"
-                    @click="fetchFilms('http://films-app.local/api/film?page='+page)"
+                    @click="fetchFilms(fetch_url + 'api/film?page='+page)"
                   >{{page}}</span>
                 </li>
                 <li class="page-item" :class="[{disabled: !pagination.next_page_url}]">
@@ -79,7 +80,8 @@ export default {
   data() {
     return {
       films: [],
-      pagination: {}
+      pagination: {},
+      fetch_url: process.env.MIX_APP_URL
     };
   },
   created() {
@@ -88,7 +90,7 @@ export default {
   methods: {
     fetchFilms(page_url) {
       let vm = this;
-      page_url = page_url || "/api/film";
+      page_url = page_url || this.fetch_url + "api/film";
       api
         .call("get", page_url)
         //.then(res => res.json())
@@ -112,7 +114,7 @@ export default {
     deleteFilm(film_id) {
       if (confirm("Are you sure")) {
         api
-          .call("delete", "/api/film/" + film_id)
+          .call("delete", this.fetch_url + "api/film/" + film_id)
           .then(res => {
             //console.log(res);
             this.films.splice(this.films.indexOf(film_id), 1);

@@ -187,7 +187,7 @@ export default {
       this.status = "";
       this.errors = "";
       api
-        .call("post", "/api/film", this.film, {
+        .call("post", process.env.MIX_APP_URL + "api/film", this.film, {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded"
           }
@@ -213,7 +213,10 @@ export default {
     slugify() {
       if (this.film.name != "") {
         api
-          .call("get", "/api/slugify/" + this.film.name)
+          .call(
+            "get",
+            process.env.MIX_APP_URL + "api/slugify/" + this.film.name
+          )
           .then(res => {
             this.film.slug = res.data;
           })

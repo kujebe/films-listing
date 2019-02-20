@@ -115,7 +115,7 @@
               <label for>Film Photo</label>
               <input type="file" v-on:change="onImageChange" class="form-control">
               <div
-                :class="errors.country ? 'is-invalid' : '' "
+                :class="errors.film_photo ? 'is-invalid' : '' "
                 v-if="errors.film_photo"
               >{{errors.film_photo[0]}}</div>
             </div>
@@ -148,10 +148,12 @@ export default {
   },
   methods: {
     fetchFilm(slug) {
-      api.call("get", "/api/film/" + slug).then(res => {
-        //console.log(res);
-        this.film = res.data.data;
-      });
+      api
+        .call("get", process.env.MIX_APP_URL + "api/film/" + slug)
+        .then(res => {
+          //console.log(res);
+          this.film = res.data.data;
+        });
     },
     onImageChange(e) {
       let files = e.target.files || e.dataTransfer.files;
@@ -170,11 +172,16 @@ export default {
     saveFilm() {
       console.log(this.film);
       api
-        .call("put", "/api/film/" + this.film.id, this.film, {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
+        .call(
+          "put",
+          process.env.MIX_APP_URL + "api/film/" + this.film.id,
+          this.film,
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            }
           }
-        })
+        )
         .then(res => {
           //console.log(res);
           this.status = res.status;

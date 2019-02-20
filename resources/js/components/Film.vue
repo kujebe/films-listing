@@ -119,11 +119,13 @@ export default {
   },
   methods: {
     fetchFilm(slug) {
-      api.call("get", "/api/film/" + slug).then(res => {
-        //console.log(res);
-        this.film = res.data.data;
-        this.rating = true;
-      });
+      api
+        .call("get", process.env.MIX_APP_URL + "api/film/" + slug)
+        .then(res => {
+          //console.log(res);
+          this.film = res.data.data;
+          this.rating = true;
+        });
     },
     addComment() {
       let commentModel = {
@@ -132,7 +134,7 @@ export default {
         comment: this.newComment
       };
       api
-        .call("post", "/api/comment", commentModel)
+        .call("post", process.env.MIX_APP_URL + "api/comment", commentModel)
         .then(res => {
           this.newComment = "";
           this.fetchFilm(this.film.slug);

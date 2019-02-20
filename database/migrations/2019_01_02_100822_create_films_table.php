@@ -23,7 +23,8 @@ class CreateFilmsTable extends Migration
             $table->float('ticket_price', 8, 2);
             $table->string('country');
             $table->string('genre');
-            $table->string('film_photo')->nullable();
+            //$table->string('film_photo')->nullable();
+            $table->string('film_photo')->nullable()->default('no-image.svg');
             $table->timestamps();
         });
     }

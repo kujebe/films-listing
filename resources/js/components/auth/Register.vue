@@ -67,7 +67,7 @@ export default {
       };
 
       axios
-        .post("/api/register", data)
+        .post(process.env.MIX_APP_URL + "api/register", data)
         .then(({ data }) => {
           console.log(data);
           //auth.login(data.token, data.user);

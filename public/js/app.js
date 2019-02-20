@@ -1914,7 +1914,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchFilm: function fetchFilm(slug) {
       var _this = this;
 
-      api.call("get", "/api/film/" + slug).then(function (res) {
+      api.call("get", "http://films-app.local/" + "api/film/" + slug).then(function (res) {
         //console.log(res);
         _this.film = res.data.data;
       });
@@ -1943,7 +1943,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       console.log(this.film);
-      api.call("put", "/api/film/" + this.film.id, this.film, {
+      api.call("put", "http://films-app.local/" + "api/film/" + this.film.id, this.film, {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded"
         }
@@ -2098,7 +2098,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchFilm: function fetchFilm(slug) {
       var _this = this;
 
-      api.call("get", "/api/film/" + slug).then(function (res) {
+      api.call("get", "http://films-app.local/" + "api/film/" + slug).then(function (res) {
         //console.log(res);
         _this.film = res.data.data;
         _this.rating = true;
@@ -2112,7 +2112,7 @@ __webpack_require__.r(__webpack_exports__);
         owner_id: this.user.id,
         comment: this.newComment
       };
-      api.call("post", "/api/comment", commentModel).then(function (res) {
+      api.call("post", "http://films-app.local/" + "api/comment", commentModel).then(function (res) {
         _this2.newComment = "";
 
         _this2.fetchFilm(_this2.film.slug);
@@ -2221,11 +2221,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       films: [],
-      pagination: {}
+      pagination: {},
+      fetch_url: "http://films-app.local/"
     };
   },
   created: function created() {
@@ -2236,7 +2238,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var vm = this;
-      page_url = page_url || "/api/film";
+      page_url = page_url || this.fetch_url + "api/film";
       api.call("get", page_url) //.then(res => res.json())
       .then(function (res) {
         //console.log(res);
@@ -2257,7 +2259,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       if (confirm("Are you sure")) {
-        api.call("delete", "/api/film/" + film_id).then(function (res) {
+        api.call("delete", this.fetch_url + "api/film/" + film_id).then(function (res) {
           //console.log(res);
           _this2.films.splice(_this2.films.indexOf(film_id), 1);
 
@@ -2579,7 +2581,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log(this.film);
       this.status = "";
       this.errors = "";
-      api.call("post", "/api/film", this.film, {
+      api.call("post", "http://films-app.local/" + "api/film", this.film, {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded"
         }
@@ -2604,7 +2606,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       if (this.film.name != "") {
-        api.call("get", "/api/slugify/" + this.film.name).then(function (res) {
+        api.call("get", "http://films-app.local/" + "api/slugify/" + this.film.name).then(function (res) {
           _this3.film.slug = res.data;
         }).catch(function (err) {
           _this3.errors = err.data.errors;
@@ -2676,7 +2678,7 @@ __webpack_require__.r(__webpack_exports__);
         email: this.email,
         password: this.password
       };
-      axios.post("/api/login", data).then(function (_ref) {
+      axios.post("http://films-app.local/" + "api/login", data).then(function (_ref) {
         var data = _ref.data;
         console.log(data);
         auth.login(data.token, data.user);
@@ -2780,7 +2782,7 @@ __webpack_require__.r(__webpack_exports__);
         password: this.password,
         password_confirmation: this.password_confirmation
       };
-      axios.post("/api/register", data).then(function (_ref) {
+      axios.post("http://films-app.local/" + "api/register", data).then(function (_ref) {
         var data = _ref.data;
         console.log(data); //auth.login(data.token, data.user);
 
@@ -38752,7 +38754,7 @@ var render = function() {
                 _vm.errors.film_photo
                   ? _c(
                       "div",
-                      { class: _vm.errors.country ? "is-invalid" : "" },
+                      { class: _vm.errors.film_photo ? "is-invalid" : "" },
                       [_vm._v(_vm._s(_vm.errors.film_photo[0]))]
                     )
                   : _vm._e()
@@ -39065,10 +39067,17 @@ var render = function() {
           _vm._l(_vm.films, function(film) {
             return _c("div", { key: film.id, staticClass: "col-md-4" }, [
               _c("div", { staticClass: "card mb-4 box-shadow" }, [
-                _c("img", {
-                  staticClass: "card-img-top",
-                  attrs: { src: "/images/" + film.film_photo }
-                }),
+                film.film_photo
+                  ? _c("img", {
+                      staticClass: "card-img-top",
+                      attrs: { src: "/images/" + film.film_photo }
+                    })
+                  : _c("img", {
+                      attrs: {
+                        src: "https://via.placeholder.com/200",
+                        alt: "Placeholder"
+                      }
+                    }),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-body" }, [
                   _c("h4", [
@@ -39199,7 +39208,7 @@ var render = function() {
                             on: {
                               click: function($event) {
                                 _vm.fetchFilms(
-                                  "http://films-app.local/api/film?page=" + page
+                                  _vm.fetch_url + "api/film?page=" + page
                                 )
                               }
                             }

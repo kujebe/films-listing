@@ -89,7 +89,7 @@ class FilmController extends Controller
     public function update(FilmStoreRequest $filmRequest, Film $film)
     {   
 
-        $image = $filmRequest['film_photo']; 
+        $image = $filmRequest['film_photo'];  
         $img_name = time().'.' . explode('/', explode(':', substr( $image, 0, strpos( $image, ';')))[1])[1];
         \Image::make($image)->resize(null, 450)->save(public_path('images/').$img_name);  
 
@@ -101,7 +101,7 @@ class FilmController extends Controller
         $film->ticket_price = $filmRequest['ticket_price'];
         $film->country = $filmRequest['country'];
         $film->genre = $filmRequest['genre']; 
-        $film->film_photo = $img_name; 
+        //$film->film_photo = $img_name; 
          
         if($film->save()){  
             return new FilmResource($film);
